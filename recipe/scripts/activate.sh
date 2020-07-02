@@ -1,0 +1,2 @@
+export TVM_USE_RUNTIME_LIB=true
+export TVM_LIBRARY_PATH=${CONDA_PREFIX}/lib
