@@ -10,7 +10,7 @@ source:
   sha256: e9724ccb3e3bd4c1c48fa6b56450443d390329b02987465f58824d90337e090e
 
 build:
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -20,12 +20,12 @@ requirements:
     - ninja
   host:
     - dlpack >0.2
-    - rang
+    - rang >=3.1.0
     - dmlc >=0.4
   run:
     - dlpack >0.2
     - dmlc >=0.4
-    - rang
+    - rang >=3.1.0
 
 test:
   commands:
