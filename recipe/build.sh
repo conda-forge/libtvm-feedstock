@@ -17,11 +17,3 @@ cmake .. -G Ninja \
          
 ninja -j${CPU_COUNT}
 ninja install
-
-ACTIVATE_DIR=${PREFIX}/etc/conda/activate.d
-DEACTIVATE_DIR=${PREFIX}/etc/conda/deactivate.d
-mkdir -p ${ACTIVATE_DIR}
-mkdir -p ${DEACTIVATE_DIR}
-
-cp ${RECIPE_DIR}/scripts/activate.sh ${ACTIVATE_DIR}/tvm-activate.sh
-cp ${RECIPE_DIR}/scripts/deactivate.sh ${DEACTIVATE_DIR}/tvm-deactivate.sh
