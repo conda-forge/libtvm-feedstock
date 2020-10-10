@@ -32,7 +32,6 @@ test:
   commands:
     - test -d ${PREFIX}/include/tvm
     - test -f ${PREFIX}/lib/libtvm${SHLIB_EXT}
-    - test -f ${PREFIX}/lib/libnnvm_compiler${SHLIB_EXT}
     - test -f ${PREFIX}/lib/libtvm_topi${SHLIB_EXT}
     - test -f ${PREFIX}/lib/libtvm_runtime${SHLIB_EXT}
 
