@@ -1,5 +1,5 @@
 {% set name = "libtvm" %}
-{% set version = "0.6.1" %}
+{% set version = "0.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/apache/incubator-tvm/archive/v{{ version }}.tar.gz
-  sha256: e2688526d24242bbf5f3adbc0590b1234c4fd0b7a8f61bd837af6c49e5020713
+  sha256: 84d825f25c9cfc7cf76359c41d4cd6a6dd53fd247f6f280c45268ce6835d2a10
 
 build:
   number: 0
@@ -41,7 +41,7 @@ about:
   license: Apache-2.0
   license_family: Apache
   license_file: LICENSE
-  summary: 'Open Deep Learning Compiler Stack'
+  summary: Open Deep Learning Compiler Stack
   description: |
     Apache TVM (incubating) is a compiler stack for deep learning systems. 
     It is designed to close the gap between the productivity-focused deep 
