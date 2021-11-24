@@ -1,5 +1,5 @@
 {% set name = "libtvm" %}
-{% set version = "0.7.0" %}
+{% set version = "0.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/apache/incubator-tvm/archive/v{{ version }}.tar.gz
-  sha256: 84d825f25c9cfc7cf76359c41d4cd6a6dd53fd247f6f280c45268ce6835d2a10
+  sha256: d950c5d159c1345d0727dfb3cabb456e6947a8cb80519feaeed8e0b35e6e913e
 
 build:
   number: 0
