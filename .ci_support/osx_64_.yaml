@@ -10,18 +10,12 @@ channel_targets:
 - conda-forge main
 cuda_compiler_version:
 - None
-cudnn:
-- undefined
-cutensor:
-- '1'
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '12'
 macos_machine:
 - x86_64-apple-darwin13.4.0
-nccl:
-- '2'
 target_platform:
 - osx-64
 zip_keys:
