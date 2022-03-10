@@ -19,6 +19,8 @@ requirements:
     - {{ compiler('c') }}
     - cmake >=3.5
     - ninja
+    - python <3.9
+    - llvm
   host:
     - dlpack >0.2
     - rang >=3.1.0
