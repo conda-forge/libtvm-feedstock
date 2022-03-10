@@ -13,7 +13,8 @@ cmake .. -G Ninja \
          -DDMLC_PATH=$PREFIX/include \
          -DRANG_PATH=$PREFIX/include \
          -DUSE_CUDA=OFF \
-         -DUSE_VULKAN=OFF
+         -DUSE_VULKAN=OFF \
+         -DUSE_LIBBACKTRACE=OFF
 
          
 ninja -j${CPU_COUNT}
