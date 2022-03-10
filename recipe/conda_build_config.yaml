@@ -1,3 +1,0 @@
-cuda_compiler_version:  # [linux]
-  - None  # [linux]
-  - '11.2'  # [linux]
