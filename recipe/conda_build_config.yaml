@@ -1,5 +1,3 @@
-cudnn:
-  - '8'
 cuda_compiler_version:
   - None
   - '11.2'

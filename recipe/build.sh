@@ -36,7 +36,7 @@ rm -rf build || true
 mkdir -p build
 cd build
 
-cmake .. \
+cmake .. -G Ninja \
       -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
