@@ -1,6 +1,7 @@
 #!/bin/bash
 
 mkdir build
+cp cmake/config.cmake build
 cd build
 
 cmake .. -G Ninja \
