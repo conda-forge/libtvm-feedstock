@@ -18,6 +18,7 @@ source:
 build:
   number: 0
   skip: true  # [win]
+  skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
   string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version == "None"]
   string: py{{ CONDA_PY }}{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version != "None"]
 
