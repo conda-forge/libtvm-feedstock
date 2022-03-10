@@ -12,7 +12,7 @@ source:
     folder: 3rdparty/libbacktrace
     sha256: e0f439898046ef5f5657173c500ce6b8f8e955c12f9ba525cd9f224b15ddf6a6
   - url: https://github.com/apache/tvm-vta/archive/36a9157.tar.gz
-    sha256: e0f439898046ef5f5657173c500ce6b8f8e955c12f9ba525cd9f224b15ddf6a6
+    sha256: 400670d21fa40ebe8a034b18c35acf44743d54898d1606980aee4c338bb2e271
 
 build:
   number: 0
