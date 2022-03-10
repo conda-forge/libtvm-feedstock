@@ -22,11 +22,14 @@ build:
   skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
   string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version == "None"]
   string: py{{ CONDA_PY }}{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version != "None"]
+  missing_dso_whitelist:
+    # Follow: https://github.com/conda-forge/deno-feedstock/blob/49611827965b148b4e724b23d4077de17cf4f90b/recipe/meta.yaml#L13-L23
+    - /System/Library/Frameworks/Metal.framework/Versions/A/Metal  # [osx]
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
-    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}  # [not osx]
+    - {{ compiler('c') }}  # [not osx]
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake >=3.5
     - make
