@@ -1,5 +1,6 @@
 {% set name = "libtvm" %}
 {% set version = "0.8.0" %}
+{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
   name: {{ name|lower }}
@@ -17,28 +18,39 @@ source:
 build:
   number: 0
   skip: true  # [win]
+  string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version == "None"]
+  string: py{{ CONDA_PY }}{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version != "None"]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
+    - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake >=3.5
     - make
     - ccache
+    - pkgconfig
+    - pkg-config
     - ninja
     - python <3.9
-#     - llvm
+    - llvmdev 
   host:
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
-      # - cutlass  # [linux]
+    - cudnn  # [cuda_compiler_version != "None"]
+    - nccl  # [cuda_compiler_version != "None"]
+    - cutensor  # [cuda_compiler_version != "None"]
+    - cutlass  # [cuda_compiler_version != "None"]
     - git
   run:
     - dlpack >0.2
     - dmlc >=0.4
     - rang >=3.1.0
-      # - cutlass  # [linux]
+    - {{ pin_compatible('cudnn') }}  # [cuda_compiler_version != "None"]
+    - {{ pin_compatible('nccl') }}  # [cuda_compiler_version != "None"]
+    - {{ pin_compatible('cutensor') }}  # [cuda_compiler_version != "None"]
+    - {{ pin_compatible('cutlass') }}  # [cuda_compiler_version != "None"]
 
 test:
   commands:
