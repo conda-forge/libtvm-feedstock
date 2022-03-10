@@ -24,7 +24,6 @@ requirements:
     - {{ compiler('c') }}
     - cmake >=3.5
     - ccache
-    - gtest
     - ninja
     - python <3.9
     - llvm
