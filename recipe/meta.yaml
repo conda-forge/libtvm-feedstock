@@ -11,6 +11,8 @@ source:
   - url: https://github.com/tlc-pack/libbacktrace/archive/08f7c7e.tar.gz
     folder: 3rdparty/libbacktrace
     sha256: e0f439898046ef5f5657173c500ce6b8f8e955c12f9ba525cd9f224b15ddf6a6
+  - url: https://github.com/apache/tvm-vta/archive/36a9157.tar.gz
+  - sha256: e0f439898046ef5f5657173c500ce6b8f8e955c12f9ba525cd9f224b15ddf6a6
 
 build:
   number: 0
@@ -21,6 +23,8 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('c') }}
     - cmake >=3.5
+    - ccache
+    - gtest
     - ninja
     - python <3.9
     - llvm
@@ -28,11 +32,13 @@ requirements:
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
+      # - cutlass  # [linux]
     - git
   run:
     - dlpack >0.2
     - dmlc >=0.4
     - rang >=3.1.0
+      # - cutlass  # [linux]
 
 test:
   commands:
