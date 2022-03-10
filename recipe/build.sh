@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 mkdir build
 cp cmake/config.cmake build
@@ -13,8 +13,7 @@ cmake .. -G Ninja \
          -DDMLC_PATH=$PREFIX/include \
          -DRANG_PATH=$PREFIX/include \
          -DUSE_CUDA=OFF \
-         -DUSE_VULKAN=OFF \
-         -DUSE_LIBBACKTRACE=OFF
+         -DUSE_VULKAN=OFF
 
          
 ninja -j${CPU_COUNT}
