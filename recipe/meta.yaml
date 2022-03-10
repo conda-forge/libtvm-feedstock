@@ -23,6 +23,7 @@ requirements:
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
+    - git
   run:
     - dlpack >0.2
     - dmlc >=0.4
