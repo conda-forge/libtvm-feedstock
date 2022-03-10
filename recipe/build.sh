@@ -24,10 +24,10 @@ GPU_OPT=""
 TOOLCHAIN_OPT=""
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    GPU_OPT="-DUSE_METAL=ON"
+  OPTS="-DUSE_METAL=ON -DUSE_BLAS=apple -DUSE_BNNS=ON"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if [[ "$cuda_compiler_version" != "None" ]]; then
-     GPU_OPT="-DUSE_CUDA=ON -DUSE_CUBLAS=ON -DUSE_CUDNN=ON"
+    OPTS="-DUSE_CUDA=ON -DUSE_CUBLAS=ON -DUSE_CUDNN=ON -DUSE_CUTLASS=ON"
   fi
 fi
 
@@ -39,7 +39,6 @@ cd build
 cmake .. -G Ninja \
       -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
       -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INCLUDE_PATH=$PREFIX/include \
       -DDLPACK_PATH=$PREFIX/include \
       -DDMLC_PATH=$PREFIX/include \
@@ -52,7 +51,7 @@ cmake .. -G Ninja \
       -DUSE_LLVM=ON \
       -DINSTALL_DEV=ON \
       -DUSE_LIBBACKTRACE=AUTO \
-      ${GPU_OPT}
+      ${OPTS}
 
          
 ninja -j${CPU_COUNT}
