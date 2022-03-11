@@ -39,6 +39,7 @@ requirements:
     - pkg-config
     - ninja
     - python <3.9 
+    - llvmdev  # [build_platform != target_platform]
   host:
     - llvmdev
     - dlpack >0.2
