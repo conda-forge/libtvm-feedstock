@@ -38,8 +38,9 @@ requirements:
     - pkg-config
     - ninja
     - python <3.9
-    - llvmdev 
+ 
   host:
+    - llvmdev
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
@@ -49,6 +50,7 @@ requirements:
     - cutlass  # [cuda_compiler_version != "None"]
     - git
   run:
+    - {{ pin_compatible('llvmdev') }}
     - dlpack >0.2
     - dmlc >=0.4
     - rang >=3.1.0
@@ -56,6 +58,7 @@ requirements:
     - {{ pin_compatible('nccl') }}  # [cuda_compiler_version != "None"]
     - {{ pin_compatible('cutensor') }}  # [cuda_compiler_version != "None"]
     - {{ pin_compatible('cutlass') }}  # [cuda_compiler_version != "None"]
+    - __cuda  # [cuda_compiler_version != "None"]
 
 test:
   commands:
