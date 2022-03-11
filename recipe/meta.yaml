@@ -40,8 +40,9 @@ requirements:
     - ninja
     - python <3.9
     - llvmdev  # [build_platform != target_platform]
+ 
   host:
-    - llvmdev  
+    - llvmdev
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
@@ -51,6 +52,7 @@ requirements:
     - cutlass  # [cuda_compiler_version != "None"]
     - git
   run:
+    - llvmdev
     - {{ pin_compatible('llvmdev') }}
     - dlpack >0.2
     - dmlc >=0.4
