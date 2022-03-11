@@ -1,32 +1,61 @@
 {% set name = "libtvm" %}
-{% set version = "0.7.0" %}
+{% set version = "0.8.0" %}
+{% set proc_type = "cuda" if cuda_compiler_version != "None" else "cpu" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/apache/incubator-tvm/archive/v{{ version }}.tar.gz
-  sha256: 84d825f25c9cfc7cf76359c41d4cd6a6dd53fd247f6f280c45268ce6835d2a10
+  - url: https://github.com/apache/incubator-tvm/archive/v{{ version }}.tar.gz
+    sha256: d950c5d159c1345d0727dfb3cabb456e6947a8cb80519feaeed8e0b35e6e913e
+  - url: https://github.com/tlc-pack/libbacktrace/archive/08f7c7e.tar.gz
+    folder: 3rdparty/libbacktrace
+    sha256: e0f439898046ef5f5657173c500ce6b8f8e955c12f9ba525cd9f224b15ddf6a6
+  - url: https://github.com/apache/tvm-vta/archive/36a9157.tar.gz
+    folder: 3rdparty/vta-hw
+    sha256: 400670d21fa40ebe8a034b18c35acf44743d54898d1606980aee4c338bb2e271
 
 build:
   number: 0
   skip: true  # [win]
+  skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
+  string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version == "None"]
+  string: py{{ CONDA_PY }}{{ cuda_compiler_version|replace('.', '') }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version != "None"]
+  missing_dso_whitelist:
+    # Follow: https://github.com/conda-forge/deno-feedstock/blob/49611827965b148b4e724b23d4077de17cf4f90b/recipe/meta.yaml#L13-L23
+    - /System/Library/Frameworks/Metal.framework/Versions/A/Metal  # [osx]
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
-    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}  # [not osx]
+    - {{ compiler('c') }}  # [not osx]
+    - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake >=3.5
+    - make
+    - ccache
+    - pkgconfig
+    - pkg-config
     - ninja
+    - python <3.9
+    - llvmdev 
   host:
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
+    - cudnn  # [cuda_compiler_version != "None"]
+    - nccl  # [cuda_compiler_version != "None"]
+    - cutensor  # [cuda_compiler_version != "None"]
+    - cutlass  # [cuda_compiler_version != "None"]
+    - git
   run:
     - dlpack >0.2
     - dmlc >=0.4
     - rang >=3.1.0
+    - {{ pin_compatible('cudnn') }}  # [cuda_compiler_version != "None"]
+    - {{ pin_compatible('nccl') }}  # [cuda_compiler_version != "None"]
+    - {{ pin_compatible('cutensor') }}  # [cuda_compiler_version != "None"]
+    - {{ pin_compatible('cutlass') }}  # [cuda_compiler_version != "None"]
 
 test:
   commands:
