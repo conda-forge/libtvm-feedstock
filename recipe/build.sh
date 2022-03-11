@@ -1,4 +1,6 @@
 #!/bin/env bash
+# Get an updated config.sub and config.guess
+cp $BUILD_PREFIX/share/gnuconfig/config.* ./3rdparty/libbacktrace
 
 # mkdir build
 # cp cmake/config.cmake build
@@ -36,7 +38,7 @@ rm -rf build || true
 mkdir -p build
 cd build
 
-cmake .. -G Ninja \
+cmake ${CMAKE_ARGS} .. -G Ninja \
       -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
       -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INCLUDE_PATH=$PREFIX/include \
