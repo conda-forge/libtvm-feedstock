@@ -27,6 +27,9 @@ TOOLCHAIN_OPT=""
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   OPTS="-DUSE_METAL=ON -DUSE_BLAS=apple -DUSE_BNNS=ON"
+  if [[ "$OSTYPE" == *"arm"* ]]; then
+    OPTS="-DUSE_METAL=ON -DUSE_BLAS=apple -DUSE_BNNS=ON -DLLVM_LIBS=$PREFIX/lib/libLLVM-13.dylib"
+  fi
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   if [[ "$cuda_compiler_version" != "None" ]]; then
     OPTS="-DUSE_CUDA=ON -DUSE_CUBLAS=ON -DUSE_CUDNN=ON -DUSE_CUTLASS=ON"
