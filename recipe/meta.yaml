@@ -17,7 +17,7 @@ source:
     sha256: 400670d21fa40ebe8a034b18c35acf44743d54898d1606980aee4c338bb2e271
 
 build:
-  number: 0
+  number: 2
   skip: true  # [win]
   skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
   string: py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version == "None"]
@@ -39,8 +39,8 @@ requirements:
     - pkg-config
     - ninja
     - python <3.9
-    - llvmdev 
   host:
+    - llvmdev 
     - dlpack >0.2
     - rang >=3.1.0
     - dmlc >=0.4
@@ -50,6 +50,7 @@ requirements:
     - cutlass  # [cuda_compiler_version != "None"]
     - git
   run:
+    - {{ pin_compatible('llvmdev') }}
     - dlpack >0.2
     - dmlc >=0.4
     - rang >=3.1.0
@@ -57,6 +58,7 @@ requirements:
     - {{ pin_compatible('nccl') }}  # [cuda_compiler_version != "None"]
     - {{ pin_compatible('cutensor') }}  # [cuda_compiler_version != "None"]
     - {{ pin_compatible('cutlass') }}  # [cuda_compiler_version != "None"]
+    - __cuda  # [cuda_compiler_version != "None"]
 
 test:
   commands:
