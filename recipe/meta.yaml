@@ -28,6 +28,7 @@ build:
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('cxx') }}  # [not osx]
     - {{ compiler('c') }}  # [not osx]
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
