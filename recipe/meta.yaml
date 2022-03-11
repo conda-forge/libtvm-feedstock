@@ -52,7 +52,6 @@ requirements:
     - cutlass  # [cuda_compiler_version != "None"]
     - git
   run:
-    - llvmdev
     - {{ pin_compatible('llvmdev') }}
     - dlpack >0.2
     - dmlc >=0.4
