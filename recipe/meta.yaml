@@ -29,8 +29,8 @@ build:
 requirements:
   build:
     - gnuconfig  # [unix]
-    - {{ compiler('cxx') }}  # [not osx]
-    - {{ compiler('c') }}  # [not osx]
+    - {{ compiler('cxx') }} 
+    - {{ compiler('c') }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake >=3.5
     - make
@@ -38,9 +38,7 @@ requirements:
     - pkgconfig
     - pkg-config
     - ninja
-    - python <3.9
-    - llvmdev  # [build_platform != target_platform]
- 
+    - python <3.9 
   host:
     - llvmdev
     - dlpack >0.2
