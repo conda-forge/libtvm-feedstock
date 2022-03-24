@@ -1,8 +1,4 @@
-# applicable metal framework only after 11: 
-# see this: https://github.com/phracker/MacOSX-SDKs/search?q=%3CMetal%2FMTLBlitCommandEncoder.h%3E
-# also some symbols only available after 11.0
-# Please consult conda-forge/core before doing this
-# MACOSX_DEPLOYMENT_TARGET:  # [osx and x86_64]
-#   - "11.0"                 # [osx and x86_64]
+MACOSX_DEPLOYMENT_TARGET:  # [osx and x86_64]
+  - "11.0"                 # [osx and x86_64]
 MACOSX_SDK_VERSION:        # [osx and x86_64]
   - "11.0"                 # [osx and x86_64]
