@@ -59,6 +59,7 @@ requirements:
     - {{ pin_compatible('cutensor') }}  # [cuda_compiler_version != "None"]
     - {{ pin_compatible('cutlass') }}  # [cuda_compiler_version != "None"]
     - __cuda  # [cuda_compiler_version != "None"]
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   commands:
