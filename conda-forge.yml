@@ -12,3 +12,5 @@ azure:
     pool:
       vmImage: macOS-11
 
+conda_build:
+  pkg_format: '2'
