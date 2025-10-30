@@ -17,7 +17,7 @@ source:
     sha256: 400670d21fa40ebe8a034b18c35acf44743d54898d1606980aee4c338bb2e271
 
 build:
-  number: 4
+  number: 5
   skip: true  # [win]
   skip: true  # [cuda_compiler_version in ("10.2", "11.0", "11.1")]
   string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ proc_type }}  # [cuda_compiler_version == "None"]
@@ -31,6 +31,7 @@ requirements:
     - gnuconfig  # [unix]
     - {{ compiler('cxx') }} 
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cuda') }}  # [cuda_compiler_version != "None"]
     - cmake >=3.5
     - make
@@ -59,7 +60,6 @@ requirements:
     - {{ pin_compatible('cutensor') }}  # [cuda_compiler_version != "None"]
     - {{ pin_compatible('cutlass') }}  # [cuda_compiler_version != "None"]
     - __cuda  # [cuda_compiler_version != "None"]
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   commands:
